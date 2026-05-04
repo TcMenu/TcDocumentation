@@ -1,6 +1,6 @@
 # TcMenu framework Documentation
 
-This contains the library docs as found on theCodersCorner website. 
+This contains the [library docs as found on theCodersCorner website](https://thecoderscorner.com/products/arduino-libraries/). Once a change is made and the PR is approved and merged, it will be deployed to the live website.
 
 This site uses the layout of our internal systems, it converts markdown to HTML and then uses a custom spring boot and freemarker application to serve the pages.
 
