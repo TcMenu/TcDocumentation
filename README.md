@@ -30,7 +30,7 @@ What this means:
 
 ## 2. Branding and Trademarks
 
-The TheCodersCorner name, the tcMenu name, and all associated logos are trademarks. This license does not grant you any rights to use these trademarks for your own hosting or products.
+The TheCodersCorner name, the tcMenu name, and all associated logos remain our copyright, and are trademarks. This license does not grant you any rights to use them for your own hosting or products.
 
 ## 3. External Hosting Policy
 
