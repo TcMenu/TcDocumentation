@@ -10,6 +10,17 @@ To develop the site just load the directory into an editor such as VS Code or In
 
 Generally speaking, there is a link to the reference (or doxygen generated) documents within the site, these are usually hosted at the `/ref-docs` location and each of the library repositories and the tcMenu API are built in turn to this end. These are built on web server as the documentation changes.
 
+To make a link to another page use `[link description](${relRef("other-page.md")})` which will find the page named `other-page.md` and create an anchor with text "link description".
+
+For figure images use a proper html figure element ensuring that the caption and alt tag are populated:
+
+```
+<figure>
+  <img src="..." alt="..."/>
+  <figcaption>...</figcaption>
+</figure>
+```
+
 ## A few basic rules for committers
 
 Avoid breaking links at all costs, do not refactor page names or positions without talking to one of the committers first. Check your spelling is correct, best to use a spell checker in the editor that you are using. Think about others needing to read your text, make it as short as you can while keeping the meaning.
