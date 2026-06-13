@@ -96,7 +96,7 @@ Using XBM with a TcMenu device drawable is also trivial, and works on all suppor
 
     drawable->drawXBitmap(Coord(xLoc,yLoc), Coord(width, height), xbmpData);
 
-Read more about [tcMenu device drawable]({{< relref "rendering-with-tcmenu-LCD-TFT-OLED.md" >}}).
+Read more about [tcMenu device drawable](${relRef("rendering-with-tcmenu-LCD-TFT-OLED.md")}).
 
 ### Drawing other types of bitmap using a DrawableIcon
 
