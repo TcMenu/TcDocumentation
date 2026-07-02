@@ -1,7 +1,7 @@
 +++
 title = "Using SSD1306 to generate a Uno / low memory multi level OLED menu"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "menu-plugin" ]
+tags = "arduino, display-driver, embedded-menu, menu-plugin"
 type = "blog"
 date = "2022-09-29"
 author =  "dave"

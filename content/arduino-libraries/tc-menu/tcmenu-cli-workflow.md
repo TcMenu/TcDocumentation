@@ -1,7 +1,7 @@
 +++
 title = "Working with menu structures using the CLI"
 description = ""
-tags = [ "arduino", "java", "data-comms", "embedded-menu", "library" ]
+tags = "arduino, java, data-comms, embedded-menu, library"
 type = "blog"
 date = "2021-05-01"
 author =  "dave"

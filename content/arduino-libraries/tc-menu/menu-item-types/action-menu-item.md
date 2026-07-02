@@ -1,7 +1,7 @@
 +++
 title = "Working with action items - ActionMenuItems"
 description = ""
-tags = [ "arduino", "embedded-menu", "library" ]
+tags = "arduino, embedded-menu, library"
 type = "blog"
 date = "2020-11-15"
 author =  "dave"

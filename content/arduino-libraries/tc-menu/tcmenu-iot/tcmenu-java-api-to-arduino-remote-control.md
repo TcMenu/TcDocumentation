@@ -1,7 +1,7 @@
 +++
 title = "tcMenu - Java API to Arduino for remote menu control"
 description = ""
-tags = [ "arduino", "java", "data-comms", "embedded-menu", "library" ]
+tags = "arduino, java, data-comms, embedded-menu, library"
 type = "blog"
 date = "2018-05-14"
 author =  "dave"

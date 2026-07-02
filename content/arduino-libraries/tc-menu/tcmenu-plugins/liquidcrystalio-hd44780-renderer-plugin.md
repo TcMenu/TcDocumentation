@@ -1,7 +1,7 @@
 +++
 title = "TcMenu - Rendering menus to LCD using LiquidCrystalIO library"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "menu-plugin" ]
+tags = "arduino, display-driver, embedded-menu, menu-plugin"
 type = "blog"
 date = "2019-05-11"
 author =  "dave"

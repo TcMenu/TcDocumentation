@@ -1,7 +1,7 @@
 +++
 title = "TcMenu Designer UI - worked example"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags = "arduino, display-driver, embedded-menu, library"
 type = "blog"
 date = "2018-03-30"
 author =  "dave"

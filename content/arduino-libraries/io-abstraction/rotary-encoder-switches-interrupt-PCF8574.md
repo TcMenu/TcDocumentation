@@ -1,7 +1,7 @@
 +++
 title = "Rotary encoder with non-polling (interrupt based) switches from PCF8574"
 description = ""
-tags = [ "arduino", "digital-io", "library", "button-press", "switches" ]
+tags = "arduino, digital-io, button-press, switches"
 type = "blog"
 date = "2018-08-24"
 author =  "dave"

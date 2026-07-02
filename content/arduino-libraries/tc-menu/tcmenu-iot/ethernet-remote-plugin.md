@@ -1,7 +1,7 @@
 +++
 title = "Ethernet2, UipEthernet, Stm32Ethernet remote plug-in for tcMenu library"
 description = ""
-tags = [ "arduino", "sockets", "embedded-menu", "menu-plugin" ]
+tags = "arduino, sockets, embedded-menu, menu-plugin"
 type = "blog"
 date = "2019-07-11"
 author =  "dave"

@@ -1,7 +1,7 @@
 +++
 title = "Connect to a remote server plug-in for tcMenu library"
 description = ""
-tags = [ "arduino", "embedded-menu", "menu-plugin" ]
+tags = "arduino, embedded-menu, menu-plugin"
 type = "blog"
 date = "2024-10-11"
 author =  "dave"

@@ -1,7 +1,7 @@
 +++
 title = "TcMenu - Overview and quick start"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags = "arduino, display-driver, embedded-menu, library"
 type = "blog"
 date = "2018-04-20"
 author =  "dave"

@@ -1,7 +1,7 @@
 +++
 title = "Setting up IO-expanders in the menu designer"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags = "arduino, display-driver, embedded-menu, library"
 type = "blog"
 date = "2021-08-28"
 author =  "dave"

@@ -1,33 +1,28 @@
 +++
 title = "Multi language locale based menu for Arduino and mbed"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags = "arduino, multi-language, embedded-menu, library"
 type = "blog"
 date = "2023-05-30"
 author =  "dave"
 menu = "tc-menu"
-banner = "/products/arduino-libraries/images/electronics/arduino/tcMenu/generatorui-locale-language-configure.png"
+banner = "/products/arduino-libraries/images/electronics/arduino/tcMenu/oled-dashboard-example.jpg"
+titleimg = "/products/arduino-libraries/images/electronics/arduino/tcMenu/oled-dashboard-example.jpg"
 githublink = "https://github.com/TcMenu/tcMenu"
 referenceDocs = "/tcmenu/html/index.html"
 weight = 2
 toc_needed = true
 +++
 
-TcMenu 4.0 onward supports multi-language menus based on [resource bundles](https://www.baeldung.com/java-resourcebundle) which are effectively properties files containing language translations. The designer lets you set up translations on a per-locale basis for the app name, each menu item, and even for additional strings in your application. Once enabled the properties files are turned into a series of C++ include header files that you can choose between using a TC_LOCALE_?? setting described below.
+tcMenu supports compile-time internationalisation using Java-style [resource bundles](https://www.baeldung.com/java-resourcebundle). You define translated strings in an `i18n` directory, refer to those strings from your menu definition or C++ code, and the code generator creates C++ headers for the selected language.
 
-## Enabling and setting up languages
+We enable the support by adding an `i18n` directory within the project that has at least a properties file named `project-lang.properties` within it. You can either enable it within [TcMenu Web Designer](https://designer.thecoderscorner.com), or manually set up the directories yourself.
 
-To enable the bundle support, or setup additional languages from the "Code" menu select "Configure Locales". This will bring up the following dialog where you can add and remove locales from the list of available languages. Please note that designer will not erase locale files that already exist to avoid accidental data loss.
+Once you've enabled i18n support, each menu item (and even additional strings in your application) can be localized. The method is slightly different for manually maintained menu builder fluent API and static projects. Each is described in detail later.
 
-<figure><img src="/products/arduino-libraries/images/electronics/arduino/tcMenu/generatorui-locale-language-configure.png" alt="Configure locale dialog showing enabled and available locales" /><figcaption>Locale Configuration dialog</figcaption></figure>
+## Summary of locale project storage 
 
-### Adding and removing languages
-
-To select a locale choose the language first, and then if required you can add a country as well, once both are selected click the ">>" button to move it selected. You can only automatically remove items before a file is created as discussed above.
-
-## Properties file storage
-
-Let's take a project file that has been localized to both English and French. We normally always treat English as the default language. We will end up with an i18n directory at the same level as the `emf` project file with each translation within it.
+Let's take a project that has been localized to both English and French. We normally always treat English as the default language. Notice the i18n directory at the same level as the `emf` project file with properties files within it.
 
     projectDirectory
         projectName.emf
@@ -35,62 +30,126 @@ Let's take a project file that has been localized to both English and French. We
             project-lang.properties
             project-lang_fr.properties
 
-Within one of the properties files, any localized menu items will have their translations, here are some examples:
+Here is an example properties file:
 
-    # Created by TcMenu to hold menu translations, will always be written in UTF-8
     menu.3.enum.1=Item2
     menu.3.enum.0=Item 1
     menu.3.name=Enum
-    menu.5.name=Settings
-    menu.3.enum.2=ChangeMe
-    menu.1.name=Analog
-    menu.1.unit=V
-    menu.2.name=Float
-    menu.4.name=Power
-    menu.8.name=YesNo
-    menu.7.name=RGB
-    menu.6.name=Action
     project.name=Adafruit Dashboard
 
-We can see that entries are in the form `key`="value". Code generator supports locale entries for `name` fields, `AnalogMenuItem` unit field, `EnumMenuItem` entries, list menu item values, and the project name field. You can also easily create your own localized values for your own use too (explained further down).
+We can see that entries are in the form `key=value`. If you're using fluent API instead of round tripping, whereever you could provide a `const char*` AKA a constant string of characters such as `"hello world"` you can replace with a localized string.
 
-When we localize a string, it's name/unit/value in the `emf` then its name start with a `%`, which means it is localized and the translation is within the resource bundle. The exception is `%%` which escapes the `%` symbol. Resource bundles are fully documented in many places online, this is just a getting started guide. Example:   
+There are many good editors that support resource bundles, including most Jetbrains IDEs and VS Code.
 
-        "unitName": "%menu.1.unit"
+Code generator itself supports locale entries for:
 
-To escape a `%` at the start of the text:
+* `name` field of any item, 
+* `AnalogMenuItem` `unit` field, 
+* `EnumMenuItem` `entries`, 
+* `ListMenuItem` menu item values, 
+* and the project name field.
 
-        "unitName": "%%"
+## How properties are mapped to C++ header definitions
 
-## Editing items in designer
+Every build of the locale header files (either using designer or the simple Python script build tool) converts properties files into C++ header definitions. There is a section for every language, and you can choose between them using `TC_LOCALE_??` build flag. In the header file, each property name is converted into a header define by prefixing with `TC_I18N_`, turning all letters to upper case, replacing all dots with underscores. For example:
 
-In designer, once an application is internationalized, above the menu tree on the left, a new combo box appears where you can select the locale for both menu tree display, and for previewing of values. Importantly, designer does not directly edit the properties files, but will reload them automatically when they are changed. The recommended way to work is to load the properties file into an editor alongside TcMenu Designer, then as you edit the properties they will be reloaded.
+      # in the properties file
+      my.property.name=hello world
 
-Once the menu item properly editor is opened, next to the name field you'll see a preview of the name in the chosen locale. Also, if you type in a resource bundle reference that doesn't exist, you'll get a warning until you create it. Let's take an example below:
+      // C++ code header - can be used in code needing a const char[] / string.
+      #define TC_I18N_MY_PROPERTY_NAME="hello world"
 
-Property file content:
+We plan to soon add support for changing languages at runtime, but this requires a little work. However, when you're using the locale definitions above, access the values using this function as that will eventually allow for runtime language switching. Here are two code examples:
+
+     const char* myStr = getTcLocaleString(TC_I18N_MY_PROPERTY_NAME);
+     auto len = strllen(getTcLocaleString(TC_I18N_MY_PROPERTY_NAME));
+
+Although at the moment this is passthrough, it will eventually work with a global locale object.
+
+## How to localize a menu project
+
+There are two different ways that you can use [tcMenu Web Designer](https://designer.thecoderscorner.com), you can either create an initial project in web designer using the fluent menu builder pattern, and then maintain it yourself. Using this pattern you do not round trip and modify the structure yourself. The second way is to let tcMenu Designer look after the menu structures for you and round trip changes through designer.
+
+Either method works for internationalized menus, and each is discussed in detail below.
+
+### Localizing TcMenuBuilder project that is manually maintained 
+
+For this case, use the python `tcmenu-i18n` script from the tcMenu repository, this builds the properties into header files after you've changed them. It has the following options:
+
+* `--single-hdr` generate all locales into a single header file (without this option you get one header per language).
+* `--out-dir` generate files into a directory relative to the starting point.
+
+The procedure is:
+
+* Edit the `i18n/tcmenu-lang*.properties` properties files to add your new translations.
+* Run the `tcmenu-i18n` script to generate the header files.
+* Include the generated header files in your project files.
+* Use the translation strings using `getTcLocaleString(...)` as described above.
+
+For example using the a property in a float builder item:
+
+```
+    TcMenuBuilder builder(...);
+    builder.floatItem(MENU_ITEM_ID, getTcLocaleString(TC_I18N_ITEM_NAME), DONT_SAVE, 1, NoMenuFlags)
+```
+
+### Localizing a menu built by designer round-trip generation
+
+To localize a string, simply prepend the name/unit/value in either designer or the `emf` file so that it starts with a `%`; which means localize the value with translations in the resource bundle. The exception is `%%` which escapes the `%` symbol. Resource bundles are fully documented in many places online, this is just a getting started guide. 
+
+For example if we set the unit of an analog item in designer to `%menu.1.unit` we would then need to add a line to the properties as follows:
+
+       menu.1.unit=Amp
+
+To escape a `%` at the start of the text we use the following `%%` that means `%`.
+
+In web designer, it will try to load the default properties file, and show the values from there in the menu tree.
+
+Take careful note that although there are extended save locations, where you can generate files into a `generated` directory that this is incompatible with Arduino UI or CLI, only use this with CMake and PlatformIO.
+
+<figure><img src="/products/arduino-libraries/images/electronics/arduino/tcMenu/generatorui-locale-save-locations.png" alt="Possible save locations for both your and the generated code" /><figcaption>Choosing a save location</figcaption></figure>
+
+### When you're using all plugins in single file mode
+
+In the case that all plugins in single file mode is selected, then all the locales will be written into a single file. They will all be written into `projectName_langSelect.h`.
+
+### When you're using separate plugin per file mode
+
+In the generated output directory there will be several new files. Firstly `projectName_langSelect.h` that will include the right language header file based on a compile time flag, then each of the language files following the pattern `projectName_lang.h`. Here's an example:
+
+## How values are interpolated
+
+When generating the properties file, the precidence will be firstly the most language specific file, working out to the default file. For example, if you're targeting English and French, you'd have the main file contianinig English, and  `project-lang_fr.properties` for the French translations. Any missing entries in the French (or other chosen language) properties default to the English text. You can also use country level locales too, these are supported by both the round trip and the python script.
+
+Order of precedence:
+
+* Country specific file (E.G. French/Candadian)
+* Language specific file (E.G. French)
+* Default file
+
+Example French property file content:
+
+    menu.1.name = Bonjour
+
+Example property file content:
 
     menu.1.name = Hello
     menu.1.unit = V
 
-Field values examples:
+| Field        | Output  | Language          | Comment                                           |
+|--------------|---------|-------------------|---------------------------------------------------|
+| %menu.1.name | Hello   | English (default) | Taken from default bundle                         |
+| %menu.1.name | Bonjour | French (fr)       | Taken from French bundle                          |
+| %menu.1.unit | V       | French (fr)       | Taken from default bundle as not in French bundle |
+| %%           | %       | Any               | Escaped to %                                      |
+| Text         | Text    | Any               | Not from bundle                                   |
+| V            | V       | Any               | Not from bundle                                   |
 
- | Field        | Output | Comment           |
- |--------------|--------|-------------------|
- | %menu.1.name | Hello  | Taken from bundle |
- | %menu.1.unit | V      | Taken from bundle |
- | %%           | %      | Escaped to %      |
- | Text         | Text   | Not from bundle   |
- | V            | V      | Not from bundle   |
+## Editing items in designer (round trip mode)
 
-## I18N and code generator
+In web designer, once an application is internationalized, you'll see that the items in the tree will show the default translation text, when you use a resource bundle reference. For example, if you type in `%menu.1.name` it will show "Hello" in the preview. If you type in `Text` it will show "Text" in the preview. If you type in `%%` it will show "%" in the preview.
 
-As of 4.0 there are extended save locations, where you can generate files into a "generated" directory (note this is compatible with PlatformIO and CMake but _not_ with Arduino UI/CLI). If supported on your build, this is recommended when combined with locales, as the number of files increases with each language. To change save location simply select the Root item in the tree and change the save location:
-
-<figure><img src="/products/arduino-libraries/images/electronics/arduino/tcMenu/generatorui-locale-save-locations.png" alt="Possible save locations for both your and the generated code" /><figcaption>Choosing a save location</figcaption></figure>
-
-
-In the generated output directory there will be several new files. Firstly `projectName_langSelect.h` that will include the right language header file based on a compile time flag, then each of the language files following the pattern `picoAdafruitDashboard_lang.h`. Here's an example:
+Also, the root menu contains a refresh properties button that allows you to reload the properties from the resource bundle.
 
     generated
         projectName_lang.h
@@ -99,31 +158,10 @@ In the generated output directory there will be several new files. Firstly `proj
         projectName_menu.cpp
         projectName_menu.h
 
-Looking inside a language header file we can see it follows a pattern to convert the above properties keys into definitions (capitalize and separate by underscore):
-
-    #define TC_I18N_MENU_2_NAME "Float"
-    #define TC_I18N_MENU_8_NAME "YesNo"
-    #define TC_I18N_MENU_5_NAME "Settings"
-    ... skipped
-    #define TC_I18N_PROJECT_NAME "Adafruit Dashboard"
-
+## Choosing a locale
 
 Always only include `projectName_langSelect.h` as this will select the right locale. Locales use the standard language and country format. For example to choose global French set the follow compile flag:
 
     TC_LOCALE_FR
 
 The lack of such a compile flag means use the default locale. Even most TcMenu internal strings are now localized and use the same locale definition file, there are presently translations into English, French, Slovak, German, Ukrainian, and Czech. Any other translations would be greatly welcomed, see the tcMenuLib github repo.
-
-## Using in your own code
-
-You can create extra entries in the resoure bundles and use then in your own code, they follow exactly the same format as in the previous chapter, let's take a simple example:
-
-We add the following resource entry:
-
-    my.custom.value = Hello World
-
-After code generation, in the language definition header files, we'll find `TC_I18N_MY_CUSTOM_VALUE` is defined for each locale.
-
-Now we include the header `projectName_langSelect.h` where projectName is your project name.
-
-Finally, we can use it as if it were a defined string. For example: `strlen(TC_I18N_MY_CUSTOM_VALUE)`.

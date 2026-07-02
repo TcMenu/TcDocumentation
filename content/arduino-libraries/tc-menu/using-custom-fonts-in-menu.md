@@ -1,7 +1,7 @@
 +++
 title = "Using custom fonts in your menu with different libraries"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags = "arduino, display-driver, embedded-menu, library"
 type = "blog"
 date = "2021-05-28"
 author =  "dave"

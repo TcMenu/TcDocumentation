@@ -1,7 +1,7 @@
 +++
 title = "TcMenu - Touch pad sensor input plugin"
 description = ""
-tags = [ "arduino", "button-press", "embedded-menu", "menu-plugin" ]
+tags = "arduino, button-press, embedded-menu, menu-plugin"
 type = "blog"
 date = "2021-01-14"
 author =  "dave"

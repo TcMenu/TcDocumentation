@@ -1,7 +1,7 @@
 +++
 title = "Code Generator and Plugins guide"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags =  "arduino, display-driver, embedded-menu, library"
 type = "blog"
 date = "2021-10-20"
 author =  "dave"

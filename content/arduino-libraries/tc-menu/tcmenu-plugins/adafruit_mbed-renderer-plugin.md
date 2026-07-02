@@ -1,7 +1,7 @@
  +++
 title = "TcMenu - Using Adafruit_GFX mbed to render menus"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "menu-plugin" ]
+tags = "arduino, display-driver, embedded-menu, menu-plugin"
 type = "blog"
 date = "2020-09-10"
 author =  "dave"

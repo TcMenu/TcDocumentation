@@ -1,7 +1,7 @@
 +++
 title = "Menu In Menu support for embedded Java on Linux / Raspberry PI"
 description = ""
-tags = [ "arduino", "sockets", "embedded-menu", "menu-plugin" ]
+tags = "arduino, sockets, embedded-menu, menu-plugin"
 type = "blog"
 date = "2022-04-21"
 author =  "dave"

@@ -1,7 +1,7 @@
 +++
 title = "Working with RGB color choice items  - Rgb32MenuItem"
 description = ""
-tags = [ "arduino", "embedded-menu", "library" ]
+tags = "arduino, embedded-menu, library"
 type = "blog"
 date = "2020-11-11"
 author =  "dave"

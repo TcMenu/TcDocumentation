@@ -1,7 +1,7 @@
 +++
 title = "MenuManager and menu iteration"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags = "arduino, display-driver, embedded-menu, library"
 type = "blog"
 date = "2020-10-02"
 author =  "dave"

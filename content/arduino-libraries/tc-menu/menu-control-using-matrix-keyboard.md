@@ -1,7 +1,7 @@
 +++
 title = "Menu control using a matrix keyboard"
 description = ""
-tags = [ "arduino", "embedded-menu", "library" ]
+tags = "arduino, embedded-menu, library"
 type = "blog"
 date = "2019-08-02"
 author =  "dave"

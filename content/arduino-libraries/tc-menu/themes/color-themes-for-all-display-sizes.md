@@ -1,7 +1,7 @@
 +++
 title = "Color themes for all display sizes."
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "menu-plugin" ]
+tags = "arduino, display-driver, embedded-menu, menu-plugin"
 type = "blog"
 date = "2021-05-12"
 author =  "dave"

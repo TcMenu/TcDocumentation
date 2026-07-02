@@ -1,7 +1,7 @@
 +++
 title = "TcMenu - TagVal protocol documentation"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags = "arduino, display-driver, embedded-menu, library"
 type = "blog"
 date = "2018-10-25"
 author =  "dave"

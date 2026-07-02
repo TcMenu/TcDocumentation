@@ -1,7 +1,7 @@
 +++
 title = "Taking over the display from a renderer"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags = "arduino, display-driver, embedded-menu, library"
 type = "blog"
 date = "2020-11-12"
 author =  "dave"

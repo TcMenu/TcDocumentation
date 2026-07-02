@@ -1,7 +1,7 @@
 +++
 title = "Embedded Java ethernet, WiFi and Serial plugin"
 description = ""
-tags = [ "arduino", "sockets", "embedded-menu", "menu-plugin" ]
+tags = "arduino, sockets, embedded-menu, menu-plugin"
 type = "blog"
 date = "2022-04-10"
 author =  "dave"

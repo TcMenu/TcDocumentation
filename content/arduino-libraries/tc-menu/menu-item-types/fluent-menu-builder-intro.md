@@ -1,7 +1,7 @@
 +++
 title = "Introduction to fluent menu builder"
 description = ""
-tags = [ "arduino", "embedded-menu", "library" ]
+tags = "arduino, embedded-menu, library"
 type = "blog"
 date = "2026-04-22"
 author =  "dave"

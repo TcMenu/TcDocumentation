@@ -1,7 +1,7 @@
 +++
 title = "TcMenu - DfRobot input and display plugin"
 description = ""
-tags = [ "arduino", "button-press", "display-driver", "embedded-menu", "menu-plugin" ]
+tags = "arduino, button-press, display-driver, embedded-menu, menu-plugin"
 type = "blog"
 date = "2019-06-14"
 author =  "dave"

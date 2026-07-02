@@ -1,7 +1,7 @@
 +++
 title = "Customising input and display tcMenu plugins"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags = "arduino, display-driver, embedded-menu, library"
 type = "blog"
 date = "2019-07-10"
 author =  "dave"

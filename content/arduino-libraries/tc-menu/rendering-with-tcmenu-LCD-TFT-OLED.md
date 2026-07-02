@@ -1,7 +1,7 @@
 +++
 title = "Rendering menus to TFT, LCD and OLED using tcMenu"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags = "arduino, display-driver, embedded-menu, library"
 type = "blog"
 date = "2019-09-12"
 author =  "dave"

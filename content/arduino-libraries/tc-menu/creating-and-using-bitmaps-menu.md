@@ -1,7 +1,7 @@
 +++
 title = "Creating and using Bitmaps and Title Widgets in your menu"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags = "arduino, display-driver, embedded-menu, library"
 type = "blog"
 date = "2023-01-02"
 author =  "dave"

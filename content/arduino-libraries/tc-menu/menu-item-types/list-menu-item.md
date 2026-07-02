@@ -1,7 +1,7 @@
 +++
 title = "Working with lists of data - ListRuntimeMenuItem"
 description = ""
-tags = [ "arduino", "embedded-menu", "library" ]
+tags = "arduino, embedded-menu, library"
 type = "blog"
 date = "2020-11-11"
 author =  "dave"

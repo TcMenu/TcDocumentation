@@ -1,7 +1,7 @@
 +++
 title = "Securing sub-menus and remote connections with an Authenticator"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags = "arduino, display-driver, embedded-menu, library"
 type = "blog"
 date = "2021-08-14"
 author =  "dave"

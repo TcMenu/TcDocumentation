@@ -1,7 +1,7 @@
 +++
 title = "Serial remote plug-in for tcMenu library"
 description = ""
-tags = [ "arduino", "serial", "embedded-menu", "menu-plugin" ]
+tags = "arduino, serial, embedded-menu, menu-plugin"
 type = "blog"
 date = "2019-07-11"
 author =  "dave"

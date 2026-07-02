@@ -1,7 +1,7 @@
 +++
 title = "IoAbstraction: Using a matrix keyboard / keypad"
 description = ""
-tags = [ "arduino", "digital-io", "library", "button-press", "switches" ]
+tags = "arduino, digital-io, button-press, switches"
 type = "blog"
 date = "2019-08-17"
 author =  "dave"

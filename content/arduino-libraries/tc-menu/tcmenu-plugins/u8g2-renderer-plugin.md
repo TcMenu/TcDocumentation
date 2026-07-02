@@ -1,7 +1,7 @@
 +++
 title = "TcMenu - Using U8G2 to render menus onto an OLED"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "menu-plugin" ]
+tags = "arduino, display-driver, embedded-menu, menu-plugin"
 type = "blog"
 date = "2019-07-06"
 author =  "dave"

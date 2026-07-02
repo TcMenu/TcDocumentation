@@ -1,7 +1,7 @@
 +++
 title = "Timed blink - IO Abstraction library example"
 description = ""
-tags = [ "arduino", "digital-io", "library", "button-press", "switches" ]
+tags = "arduino, digital-io, button-press, switches"
 type = "blog"
 date = "2017-10-20"
 author =  "dave"

@@ -1,7 +1,7 @@
 +++
 title = "Monochrome themes for rendering menus onto OLED/5110."
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "menu-plugin" ]
+tags = "arduino, display-driver, embedded-menu, menu-plugin"
 type = "blog"
 date = "2021-05-11"
 author =  "dave"

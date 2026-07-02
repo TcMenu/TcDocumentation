@@ -1,7 +1,7 @@
 +++
 title = "TcMenu - Using TFT_eSPI library to render menus"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "menu-plugin" ]
+tags = "arduino, display-driver, embedded-menu, menu-plugin"
 type = "blog"
 date = "2019-05-10"
 author =  "dave"

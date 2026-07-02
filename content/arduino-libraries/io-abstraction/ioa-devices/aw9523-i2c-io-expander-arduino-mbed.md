@@ -1,7 +1,7 @@
 +++
 title = "AW9523 I2C IoExpander with LED controller - Arduino and mbed"
 description = ""
-tags = [ "arduino", "digital-io", "library", "button-press", "switches" ]
+tags = "arduino, digital-io, button-press, switches"
 type = "blog"
 date = "2023-05-20"
 author =  "dave"

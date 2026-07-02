@@ -1,7 +1,7 @@
 +++
 title = "Embedded Java for Raspberry PI and other embedded Linux"
 description = ""
-tags = [ "arduino", "embedded-menu", "library" ]
+tags = "arduino, embedded-menu, library"
 type = "blog"
 date = "2022-04-02"
 author =  "dave"

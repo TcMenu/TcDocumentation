@@ -1,7 +1,7 @@
 +++
 title = "Changes in graphics configurations for renderers"
 description = ""
-tags = [ "arduino", "embedded-menu", "menu-plugin", "library" ]
+tags = "arduino, embedded-menu, menu-plugin, library"
 type = "blog"
 date = "2019-02-05"
 author =  "dave"

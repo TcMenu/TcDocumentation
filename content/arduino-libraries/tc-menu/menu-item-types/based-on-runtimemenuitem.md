@@ -1,7 +1,7 @@
 +++
 title = "Detailed description of RuntimeMenuItem"
 description = ""
-tags = [ "arduino", "embedded-menu", "library" ]
+tags = "arduino, embedded-menu, library"
 type = "blog"
 date = "2020-11-10"
 author =  "dave"

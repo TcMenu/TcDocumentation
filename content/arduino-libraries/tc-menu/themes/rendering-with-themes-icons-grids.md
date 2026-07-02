@@ -1,7 +1,7 @@
 +++
 title = "Rendering using themes - properties, grids and icons"
 description = ""
-tags = [ "arduino", "display-driver", "embedded-menu", "library" ]
+tags = "arduino, display-driver, embedded-menu, library"
 type = "blog"
 date = "2021-09-05"
 author =  "dave"
