@@ -14,7 +14,7 @@ weight = 2
 toc_needed = true
 +++
 
-tcMenu supports compile-time internationalisation using Java-style [resource bundles](https://www.baeldung.com/java-resourcebundle). You define translated strings in an `i18n` directory, refer to those strings from your menu definition or C++ code, and the code generator creates C++ headers for the selected language.
+Your embedded menu project can use Java-style [resource bundles](https://www.baeldung.com/java-resourcebundle). You define translated strings in an `i18n` directory, refer to those strings from your menu definition or C++ code, and the code generator creates C++ headers for the selected language.
 
 We enable the support by adding an `i18n` directory within the project that has at least a properties file named `project-lang.properties` within it. You can either enable it within [TcMenu Web Designer](https://designer.thecoderscorner.com), or manually set up the directories yourself.
 
@@ -107,7 +107,9 @@ In web designer, it will try to load the default properties file, and show the v
 
 Take careful note that although there are extended save locations, where you can generate files into a `generated` directory that this is incompatible with Arduino UI or CLI, only use this with CMake and PlatformIO.
 
-<figure><img src="/products/arduino-libraries/images/electronics/arduino/tcMenu/generatorui-locale-save-locations.png" alt="Possible save locations for both your and the generated code" /><figcaption>Choosing a save location</figcaption></figure>
+<figure>
+    <img src="/products/arduino-libraries/images/electronics/arduino/tcMenu/generatorui-locale-save-locations.png" alt="Possible save locations for both your and the generated code" />
+<figcaption>Choosing a save location</figcaption></figure>
 
 ### When you're using all plugins in single file mode
 

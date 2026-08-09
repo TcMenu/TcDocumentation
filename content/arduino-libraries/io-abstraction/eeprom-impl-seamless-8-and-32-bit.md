@@ -1,5 +1,5 @@
 +++
-title = "EEPROM implementations that are seamless between 8 and 32 bit"
+title = "EEPROM implementations that are seamless between implementations"
 description = ""
 tags = [ "arduino", "digital-io", "library", "storage" ]
 type = "blog"
@@ -13,11 +13,11 @@ titleimg = "/images/electronics/arduino/tcMenu/eeprom-title-board.jpg"
 weight = 4
 +++
 
-If like me you use both 8 bit AVR and 32 bit boards, you've probably already noticed that there's no EEPROM support on some 32 bit boards. I think that's quite unfortunate as EEPROM storage is very useful for many applications.
+EEPROM support varies considerably between boards and project designs, you've probably already noticed that there's no EEPROM support on some 32 bit boards. I think that's quite unfortunate as EEPROM storage is invaluable for many applications.
 
-Relying on memory backup like many systems today do, is nowhere near as reliable (a flat battery loses everything). Further, I've even seen discussions where people suggest using an area of program Flash as an EEPROM, I don't personally like it as flash write cycles are generally an order of magnitude lower than EEPROM, but it's now supported via the EEPROM class wrapper.
+Relying on memory backup like many systems today do, is nowhere near as reliable (a flat battery loses everything). Further, I've even seen discussions where people suggest using an area of program Flash as an EEPROM, I don't personally like it as flash write cycles are generally an order of magnitude lower than EEPROM, but it's now supported via the EEPROM class wrapper on many platforms.
 
-There's a readily available series of EEPROM IC's from Atmel in the form of the AT24Cx range; which offers various capacities in a 8 pin package over i2c. This library abstracts either AVR or I2C ROMs with a single interface, so you can easily interchange them just changing the implementation.
+There's a readily available series of EEPROM IC's from Atmel in the form of the AT24Cx range; which offers various capacities in a 8-pin package over i2c. This library standardizes support for EEPROM, ESP32-Preferences, STM32-BSP-BatteryBackedRam, AVR or I2C ROMs with a single interface, so you can easily interchange them just changing the implementation. 
 
 ${blockClear("left")}
 
@@ -31,13 +31,13 @@ All the below classes implement this interface, when you want to work with an EE
         // your code here!
     }
 
-### AvrEeprom
+### AvrEeprom: Wraps the AVR EEPROM support
 
 This implementation is based on the AVR EEPROM storage and therefore is only available when the platform is AVR (Uno, Mega etc). It wraps all the eeprom functions, and makes it easy should you later want to port to a 32 bit board. To create an instance of this type of ROM:
 
     AvrEeprom rom;
 
-### I2cAt24Eeprom
+### I2cAt24Eeprom: AT24CXX i2c EEPROM support
 
 This is an internal, ground up implementation that follows the i2c EEPROM standard, it is compatible with most devices including the At24Cx range of EEPROMs. To use this you need to set the address for the device, normally `0x50` to `0x57` depending on the address selection pins, and the page size for the device. Below, a table shows page sizes for common devices. We've tested with a wide range of devices from AT24C02 through to AT24C128 with various specs, the library works well with all.
 
@@ -73,7 +73,7 @@ The circuit for an i2c EEPROM (nearly all share same pin-outs):
 
 <figure><img src="/images/electronics/arduino/tcMenu/eeprom-wiring-diagram.png" alt="Diagram showing wiring of an i2c eeprom" /><figcaption>EEPROM i2c wiring diagram</figcaption></figure>
 
-### EEPROMWrapper
+### EEPROMWrapper: Simple wrapper for EEPROM class
 
 This class wraps the EEPROM class available on many Arduino boards for use with this abstraction. Firstly to use the wrapper you must include:
 
@@ -83,7 +83,7 @@ Note that on the ESP range of devices, you'll need to call `EEPROM.begin(size)` 
 
     ArduinoEEPROMAbstraction eepromWrapper(EEPROM);
 
-### EspPreferencesEeprom for ESP32 Preferences storage
+### EspPreferencesEeprom: ESP32 Preferences storage
 
 Requires ESP32 framework with Preferences library available for use. Note that in order to write back what's in memory you need to call `commit` to do the actual write.
 
@@ -103,7 +103,7 @@ Once you've finished writing values to it, flush the values out to storage as fo
 
 A word of caution, do not call commit too often, this storage is probably in FLASH, and has limited write cycles.
 
-### HalStm32EepromAbstraction for STM32 applications
+### HalStm32EepromAbstraction: STM32 BSP package battery-backed RAM.
 
 Requires version 1.8 of IoAbstraction.
 
@@ -117,13 +117,13 @@ Then during setup it must be initialised providing the offset into the battery b
 
 Should you wish to create a larger area than 512 byte, change EEPROM_WORD_SIZE to the number of 32-bit words to cache: (EG desiredBytes / 4).  
 
-### NoEeprom
+### NoEeprom: As you'd expect does nothing but implements the interface
 
 Fulfills the interface but actually does nothing, useful for when EEPROM support is optional. Below is an example of how to create this type:
 
     NoEeprom rom;
 
-### MockEepromAbstraction for unit testing
+### MockEepromAbstraction: for unit testing
 
 If you tend to unit test your embedded code, you can also mock out the EEPROM. This implementation uses a little RAM instead, defined in EEPROM_MOCK_SIZE and defaults to 128 bytes:
 
@@ -179,6 +179,10 @@ To write an array from memory starting at `data` to ROM starting at `romStart` w
 ## A word about EEPROM performance
 
 EEPROM storage is slow, don't read it frequently during program run, it will slow down your code, especially the i2c variant; which probably has a read bandwidth of around 40K/sec. Further, writing is even slower, and there's a limited number of cycles so only write when you need to.
+
+## To implement your own EEPROM abstraction
+
+If you wish to implement your own EEPROM abstraction, you can do so by creating a class that implements the `EEPROMAbstraction` interface. This interface provides the necessary methods for reading and writing data to EEPROM. You can then use this abstraction in a tcMenu project to interact with EEPROM storage. Given there are several implementations already, these serve as examples of how to implement it yourself, and are in the `IoAbstraction` library source.
 
 ## How to save to EEPROM in your project
 

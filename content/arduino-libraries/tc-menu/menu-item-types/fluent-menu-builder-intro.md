@@ -19,15 +19,9 @@ We envisage that most people on 32-bit boards and regular sized menus will prefe
 
 ## Dynamic EEPROM storage
 
-Dynamic EEPROM storage goes along with the above change, it allows you just ensure the ROM is big enough to store all menu items and then allow the `load` and `save` methods work out where things will reside. You simply set EEPROM location to either `SAVE_TO_ROM` or `DONT_SAVE` and then let the dynamic utility allocate space in the ROM. Each entry looks like below:
+Dynamic EEPROM storage goes along with the above change, it allows you just ensure the ROM is big enough to store all menu items and then allow the `load` and `save` methods work out where things will reside. You simply set EEPROM location to either `SAVE_TO_ROM` or `DONT_SAVE` and then let the dynamic utility allocate space in the ROM. This has pros and cons, and they are discussed at the link below.
 
-| Position | Purpose        | Length |
-|----------|----------------|--------|
-| 0 - 1    | Item ID        | 2      |
-| 2 - 3    | Length of data | 2      |
-| 3 - Len  | Item data      | Len    |
-
-Immediately following this item will be the next item, and so on. The disadvantage of this approach is that it is not possible to selectively save to ROM like in location based ROM. However, many newer APIs basically only allow the whole dataset to be written at once.
+See [the menu eeprom integrations](${relRef("menu-eeprom-integrations.md")}) for a more detailed explanation of the different EEPROM storage modes.
 
 ## Creating a menu builder.
 

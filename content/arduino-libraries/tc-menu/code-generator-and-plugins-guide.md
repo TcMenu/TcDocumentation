@@ -61,7 +61,10 @@ Unlike other plugins, there can be more than one IoT remote plugin. To the right
 
 Once the "Generate Code" button is pressed, a logging window is displayed that udpates as the code generator runs, once complete the "Close" button will be enabled on this dialog. You can take a copy of the contents of the window using the "Copy to Clipboard" button. In the event that the generator didn't do what you expected, you could try pressing "Include Debug" to get extra log information. This window is presented below:
 
-<figure><img src="/products/arduino-libraries/images/electronics/arduino/tcMenu/generatorui-code-generator-logging.png" alt="Code generator logging window after execution has completed" /><figcaption>Code generator logging window</figcaption></figure>
+<figure>
+  <img src="/products/arduino-libraries/images/electronics/arduino/tcMenu/generatorui-code-generator-logging.png" alt="Code generator logging window after execution has completed" />
+  <figcaption>Code generator logging window</figcaption>
+</figure>
 
 ### How the code is generated
 
@@ -71,11 +74,26 @@ Along with menu structures, a `ConnectorLocalInfo` is created that contains the 
 
 The way this works is that each plugin, Display, then Input, then IoT and lastly theme is asked to generate the includes, variables, and setup functions needed. Menu structures and plugin setup is written into files with the name of the project followed by `_menu.cpp`/`_menu.h`. These two files are overwritten every time code generator runs, so it's best not to edit them.
 
-In addition, some plugins also contain source files, these source files are packaged with the plugin and included into the project during code generation. Unless the file explicitly says you can edit it, you should not locally edit that file, as it will get overwritten during code generation. Exceptions: Theme files are generally not overwritten, if you want to regenerate the theme header file, you'd need to delete the existing one. 
+In addition, some plugins also contain source files, these source files are packaged with the plugin and included into the project during code generation. Most plugin files are not editable, and replaced at every rebuild. Unless the file explicitly says you can edit it, you should not locally edit that file. Exceptions: Theme files are generally not overwritten, if you want to regenerate the theme header file, you'd need to delete the existing one.
+
+In terms of plugin file output, there are three options:
+
+* All-in-one: All files are generated into a single file, this is now the default option.
+* Generated directory: Files are generated into separate files in the `project/generated` directory.
+* Current directory: The files are generated into separate files in the current directory.
 
 Lastly, the INO/main file is checked to ensure that all functions that need to be implemented are present in the sketch. If they are not then code generator will add them. If a list or custom choice item has no rendering function defined there, it will be added.
 
-Example project directory annotated:
+Example project directory annotated (all-in-one):
+
+     app_icondata.h             user created file not touched by code generator
+     ThemeCoolBlueModern.h      theme file, special case, can be edited by user
+     esp32Amplifier.emf         EMF file containing the menu definition
+     esp32Amplifier_main.cpp    The plugins, menu structures and setup code.
+     esp32Amplifier_menu.h      The plugins, menu structures and setup code.
+     esp32Amplifier_menu.cpp    The main sketch file, may be INO as well
+
+Example project directory annotated (current directory):
 
      AmplifierController.h      user created file not touched by code generator
      TestingDialogController.h  user created file not touched by code generator
@@ -101,9 +119,13 @@ User code and graphical theme code are considered part of your project for you t
 
 For any application to work, you need `tcMenu`, `IoAbstraction` and `TaskManagerIO` at a minimum. Depending on the plugins you have chosen, you may need to install additional libraries too. It's best to keep these libraries up-to-date quite frequently. In nearly all cases, they are backward compatible.
 
+### How initializer works
+
+The [menu designer in initializer mode](${relRef("menu-designer-as-initializer.md")}) creates the initial structure for you, and is generally only used with the fluent menu builder, all-in-one and dynamic EEPROM. Instead of editing the menu in designer and then round tripping, you instead just add items yourself in you sketch using the menu builder that's injected there for you. 
+
 ### How round tripping works
 
-You can create your menu project iteratively, going between the designer and your IDE. This is because the Code Generator follows some simple rules.
+You can [create your menu project iteratively using round trip](${relRef("menu-designer-round-trip.md")}), going between the designer and your IDE. This is because the Code Generator follows some simple rules.
 
 1. Changes to the INO / main project file are non-destructive. We add new callbacks for you but never remove anything. Code generator also takes a backup before making changes.
 2. You can add any additional source or libraries to your project, they will not be affected.
