@@ -1,4 +1,4 @@
- +++
++++
 title = "Using the Adafruit_GFX fork for STM32Cube, PicoSDK and mbed"
 description = ""
 tags = "display-driver, embedded-menu, menu-plugin"
@@ -29,6 +29,7 @@ Related documentation:
  
 * [Core menu rendering class guide](${relRef("rendering-with-tcmenu-LCD-TFT-OLED.md")})
 * [How to take over the display](${relRef("renderer-take-over-display.md")})
+* [Our AdafruitGFX extensions improving performance](adafruit-gfx-performance-extensions.md)
 
 ## Plugin and Library details
 

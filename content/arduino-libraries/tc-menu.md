@@ -11,9 +11,9 @@ banner: "/products/arduino-libraries/images/front/tcMenu-banner.png"
 titleimg: "/products/arduino-libraries/images/electronics/arduino/themes/color-blue-example.jpg"
 ---
 
-TcMenu is a modular, IoT ready multi level menu library for Arduino, mbed, Pico-SDK, mbed and many more platforms supporting many input, display and IoT / remote interfaces. It makes presenting configuration, status and operational information much easier. Apache licensed and therefore safe for commercial use.
+TcMenu is a modular, IoT ready multi level menu library for Arduino, ESP32-IDF, Pico-SDK, STM32Cube and mbed platforms supporting many input, display and IoT / remote interfaces. It makes presenting configuration, status and operational information much easier. Apache licensed and therefore safe for commercial use.
 
-Start by [working out what information and state is to be represented](${relRef("menu-item-types.md")}) in the [Designer UI](${relRef("tcmenu-overview-quick-start.md")}). Take inspiration from the [Arduino menu examples](https://github.com/TcMenu/tcMenuLib/tree/main/examples). Then, run [Code Generator](${relRef("code-generator-and-plugins-guide.md")}) which outputs code for the selected board ready for use in an IDE.
+Start by [working out what information and state is to be represented](${relRef("menu-item-types.md")}) in the [Designer UI](https://designer.thecoderscorner.com). Take inspiration from the [Arduino menu examples](https://github.com/TcMenu/tcMenuLib/tree/main/examples). Then, run [Code Generator](${relRef("code-generator-and-plugins-guide.md")}) which outputs code for the selected board ready for use in an IDE.
 
 ${blockClear("left")}
 
@@ -37,7 +37,6 @@ We've done our best to provide examples and starters for every board and API tha
 
 ## Using Tc menu library:
 
-* [TcMenu library examples and starter projects](https://github.com/TcMenu/tcMenuLib/tree/main/examples)
 * [Guide to working with Menu Item Types](${relRef("menu-item-types.md")})
 * [Code Generator and plugins guide](${relRef("code-generator-and-plugins-guide.md")}) 
 * [EEPROM integration with menus](${relRef("menu-eeprom-integrations.md")})
@@ -45,33 +44,33 @@ We've done our best to provide examples and starters for every board and API tha
 * [Authentication - securing sub-menus and remote connections](${relRef("secure-menuitem-pins-and-remotes.md")})
 * [MenuManager and Menu iteration Guide](${relRef("menumanager-and-iteration.md")})
 * [Writing a multi-language locale based menu](${relRef("multi-language-locale-menu.md")})
-* [Useful helper functions in tcUtil.h](${refdocs("/tcmenu/html/tc_util_8h.html")})
-* [Embedded library reference documentation](${refdocs("/tcmenu/html/index.html")})
 * [GitHub Repository - for source and releases](https://github.com/TcMenu/tcMenu)
-* [Major code level differences between library versions](${relRef("major-differences-between-library-versions.md")})
 
 ## Menu library for vendor environments using CMake (non Arduino)
 
-You can use STM32Cube or PicoSDK without requiring the Arduino framework at all. We have example menu projects that build directly against STM32Cube and PicoSDK with highly impressive performance. Our direct support generally works via CMake, and the starting point for these builds is [our CMake based project](https://github.com/TcMenu/tcLibraryDev) in the `cmakeProject` directory. If you're using this commercially, we offer commercial support for this.
+You can use STM32Cube, PicoSDK, and mbed without requiring the Arduino framework at all. We have example menu projects that build directly against STM32Cube and PicoSDK with highly impressive performance. Our direct support generally works via CMake using vendor-provided best practice.
+
+See the examples section further up as it has links to the repositories for STM32Cube, PicoSDK, and ESP32-IDF.  
 
 ## Working with displays
 
 * [Working with display renderers](${relRef("rendering-with-tcmenu-LCD-TFT-OLED.md")})
 * [Creating and using TitleWidgets and bitmaps](${relRef("creating-and-using-bitmaps-menu.md")})
-* [Themes, properties, grids and card layout](${relRef("rendering-with-themes-icons-grids.md")})
+* [Themes, properties, grids, and card layout](${relRef("rendering-with-themes-icons-grids.md")})
 * [How to define fonts within theme configuration](${relRef("using-custom-fonts-in-menu.md")})
 * [Taking over the display and dashboards](${relRef("renderer-take-over-display.md")})
+* [Adafruit_GFX performance extensions](${relRef("adafruit-gfx-performance-extensions.md")})
 
 ## Display plugins
 
 * [DfRobot LCD shield driver](${relRef("dfrobot-input-display-plugin.md")})
 * [LiquidCrystal / hd44780 display driver](${relRef("liquidcrystalio-hd44780-renderer-plugin.md")})
 * [AdaFruit_GFX driver - ILI9341, ST7735, Nokia5110 etc](${relRef("adafruit_gfx-renderer-plugin.md")})
-* [AdaFruit_GFX NativeCpp/PicoSDK/STM32Cube/mbed - OLED - LTDC, Framebuffer, SSD1306, SH1106](${relRef("adafruit_mbed-renderer-plugin.md")})
 * [U8g2 driver - for SSD1306, SH1106 etc](${relRef("u8g2-renderer-plugin.md")})
 * [SSD1306Ascii low memory driver - for SSD1306 on Uno](${relRef("ssd1306ascii-display-plugin.md")})
 * [TFT_eSPI driver with double buffering](${relRef("tft_espi-renderer-plugin.md")})
-* [STM32 LTDC mbed frame buffer with touch](${relRef("mbed-stm32-menu-touch-display.md")})
+* [AdaFruit_GFX CMake/PicoSDK/STM32Cube - OLED - LTDC, Framebuffer, SSD1306, SH1106](${relRef("adafruit_mbed-renderer-plugin.md")})
+* [GxEPD2 driver - for Eink/EPD displays](${relRef("gx_epd-renderer-plugin.md")})
 * [Customising a display driver](${relRef("customise-menu-input-display-plugin.md")})
 
 ## Theme plugins
@@ -82,7 +81,7 @@ You can use STM32Cube or PicoSDK without requiring the Arduino framework at all.
 
 ## Input plugins
 
-* [Rotary encoder, buttons or joystick](${relRef("encoder-switches-input-plugin.md")})
+* [Rotary encoder, buttons, or joystick](${relRef("encoder-switches-input-plugin.md")})
 * [Using a matrix keyboard to control menu](${relRef("menu-control-using-matrix-keyboard.md")})
 * [DfRobot analog pin keypad input](${relRef("dfrobot-input-display-plugin.md")})
 * [Resistive touch screen menu integration](${relRef("resistive-touch-screen-plugin.md")})
@@ -91,7 +90,7 @@ You can use STM32Cube or PicoSDK without requiring the Arduino framework at all.
 
 ## Remotely controlling your menu / IoT
 
-<img class="pull-left" src="/products/arduino-libraries/images/apps/embed-control/mainicon.png" width="120" alt="IoT control with embedCONTROL" > Our menu designer can build in IoT capabilities near automatically (on Ethernet2, UipEthernet (ENC28J60), ESP8266-WiFi, ESP32-WiFi, Bluetooth and Serial). Allowing you to [remotely monitor and control your device using Embed Control](https://www.thecoderscorner.com/products/apps/embed-control/) with minimal effort.
+<img class="pull-left" src="/products/arduino-libraries/images/apps/embed-control/mainicon.png" width="120" alt="IoT control with embedCONTROL" > Our menu designer can build in IoT capabilities near automatically (on Ethernet2, UipEthernet (ENC28J60), ESP8266-WiFi, ESP32-WiFi, Bluetooth, and Serial). Allowing you to [remotely monitor and control your device using Embed Control](https://www.thecoderscorner.com/products/apps/embed-control/) with minimal effort.
 
 However, to write your own remote monitoring, use our [Java Remote API](${relRef("tcmenu-java-api-to-arduino-remote-control.md")}), [TypeScript/JavaScript API](https://github.com/TcMenu/embedcontrolJS), [C#/DotNet API](https://github.com/TcMenu/tcmenu-dotnet-sdk), or the [Python API](https://github.com/TcMenu/tcmenu-python-api). Coming soon is a Dart API.
 
@@ -104,7 +103,7 @@ ${blockClear("left")}
 
 ### IoT and Remote control plugins
 
-* [Serial driver for usb, rs232 and Bluetooth control](${relRef("serial-remote-plugin.md")})
+* [Serial driver for usb, rs232, and Bluetooth control](${relRef("serial-remote-plugin.md")})
 * [Ethernet driver for Ethernet2 and Uip control](${relRef("ethernet-remote-plugin.md")})
 * [WiFi driver for ESP32 and ESP8266 control](${relRef("esp-wifi-remote-plugin.md")})
 * [Simhub connector for tcMenu using custom serial protocol](${relRef("simhub-connector.md")})
@@ -116,7 +115,8 @@ ${blockClear("left")}
 
 * [Creating plugins for use with TcMenu](https://github.com/TcMenu/tcMenu/tree/main/xmlPlugins)
 
-## Desktop version of the menu designer
+## Archived documentation
 
 * [TcMenu - Getting started, including video & slides](${relRef("tcmenu-overview-quick-start.md")})
 * [Creating and generating menus using the CLI](${relRef("tcmenu-cli-workflow.md")})
+* [Major code level differences between library versions](${relRef("major-differences-between-library-versions.md")})

@@ -48,12 +48,9 @@ The graphics variable that the generator will generate on your behalf, it will b
 
 ### Display Type
 
-We support only a few displays with this quick start method, if your display is not listed, use the manual configuration option instead. Select the appropriate display driver for your hardware. Supported quick start displays:
+We try and support as many displays as we can with quick start, and they will vary from time to time. If your display is not listed, use the manual configuration option instead.
 
-* ST7735 - no frame buffer
-* ST7789 - no frame buffer
-* ILI9341 - no frame buffer
-* Nokia 5110 - memory frame buffer
+
 
 ### Display Width & Height property
 
@@ -97,9 +94,9 @@ In this case you simply create a global variable in your sketch that creates the
 
 There are many types of display supported by this library, therefore you just provide the variable type that you declared. For example Adafruit_SSD1306. 
 
-### Buffered display property
+### Buffered display properties
 
-Indicates if this display uses memory buffering. Often, mono displays are memory buffered. For example Nokia 5110 and SSD1306 are memory buffered. When displays are memory buffered, the library will then call `display()` after each rendering change.
+Here you can both enable and set the size of the buffer. See [Adafruit display performance improvements](adafruit-gfx-performance-extensions.md)
 
 ### Updates per second
 
