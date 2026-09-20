@@ -17,9 +17,7 @@ Start by [working out what information and state is to be represented](${relRef(
 
 ${blockClear("left")}
 
-
-
-## Embedded Menu for Arduino
+## Building Embedded Menus for Arduino
 
 Web based menu designer:
 
@@ -27,7 +25,17 @@ Web based menu designer:
 * [Documentation for Web based TcMenu Turbo](${relRef("tcmenu-designer.md")})
 * [Get help from the C++/Java/Flutter consultants who wrote tcMenu](https://www.thecoderscorner.com/support-services/consultancy/)
 
-Using Tc menu library:
+## Example embedded menu projects
+
+We've done our best to provide examples and starters for every board and API that we support. Including examples for using menus directly on STM32Cube and PicoSDK.
+
+* [Arduino menu examples - packaged with the library](https://github.com/TcMenu/tcMenuLib/tree/main/examples)
+* [PicoSDK direct CMake examples](https://github.com/TcMenu/tcLibraryDev/tree/main/cmakeProject)
+* [STM32Cube direct CMake examples](https://github.com/TcMenu/stm32-examples)
+* [ESP32-IDF CMake with Arduino component](https://github.com/TcMenu/tcLibraryDev/tree/main/cmakeEsp32)
+* [Java examples and starer projects](https://github.com/TcMenu/tcmenu-examples-starters)
+
+## Using Tc menu library:
 
 * [TcMenu library examples and starter projects](https://github.com/TcMenu/tcMenuLib/tree/main/examples)
 * [Guide to working with Menu Item Types](${relRef("menu-item-types.md")})
@@ -35,7 +43,6 @@ Using Tc menu library:
 * [EEPROM integration with menus](${relRef("menu-eeprom-integrations.md")})
 * [Setting up IO expanders in designer](${relRef("setting-up-io-expanders-in-menu-designer.md")})
 * [Authentication - securing sub-menus and remote connections](${relRef("secure-menuitem-pins-and-remotes.md")})
-* [Creating and generating menus using the CLI](${relRef("tcmenu-cli-workflow.md")})
 * [MenuManager and Menu iteration Guide](${relRef("menumanager-and-iteration.md")})
 * [Writing a multi-language locale based menu](${relRef("multi-language-locale-menu.md")})
 * [Useful helper functions in tcUtil.h](${refdocs("/tcmenu/html/tc_util_8h.html")})
@@ -43,15 +50,9 @@ Using Tc menu library:
 * [GitHub Repository - for source and releases](https://github.com/TcMenu/tcMenu)
 * [Major code level differences between library versions](${relRef("major-differences-between-library-versions.md")})
 
-Desktop version of the menu designer
+## Menu library for vendor environments using CMake (non Arduino)
 
-* [TcMenu - Getting started, including video & slides](${relRef("tcmenu-overview-quick-start.md")})
-
-### Menu library for vendor environments using CMake (non Arduino)
-
-You can use PicoSDK without requiring Arduino framework at all. The opensource version of IoAbstraction supports PicoSDK directly for nearly all cases. Our direct support generally works via CMake, and the starting point for these builds is [our CMake based project](https://github.com/TcMenu/tcLibraryDev) in the `cmakeProject` directory. If you're using this commercially, please contact us for commercial support.
-
-We can support other platforms such as ESP-IDF and STM32 using this approach commercially.
+You can use STM32Cube or PicoSDK without requiring the Arduino framework at all. We have example menu projects that build directly against STM32Cube and PicoSDK with highly impressive performance. Our direct support generally works via CMake, and the starting point for these builds is [our CMake based project](https://github.com/TcMenu/tcLibraryDev) in the `cmakeProject` directory. If you're using this commercially, we offer commercial support for this.
 
 ## Working with displays
 
@@ -66,7 +67,7 @@ We can support other platforms such as ESP-IDF and STM32 using this approach com
 * [DfRobot LCD shield driver](${relRef("dfrobot-input-display-plugin.md")})
 * [LiquidCrystal / hd44780 display driver](${relRef("liquidcrystalio-hd44780-renderer-plugin.md")})
 * [AdaFruit_GFX driver - ILI9341, ST7735, Nokia5110 etc](${relRef("adafruit_gfx-renderer-plugin.md")})
-* [AdaFruit_GFX NativeCpp/PicoSDK/mbed RTOS for OLED - SSD1306, SH1106](${relRef("adafruit_mbed-renderer-plugin.md")})
+* [AdaFruit_GFX NativeCpp/PicoSDK/STM32Cube/mbed - OLED - LTDC, Framebuffer, SSD1306, SH1106](${relRef("adafruit_mbed-renderer-plugin.md")})
 * [U8g2 driver - for SSD1306, SH1106 etc](${relRef("u8g2-renderer-plugin.md")})
 * [SSD1306Ascii low memory driver - for SSD1306 on Uno](${relRef("ssd1306ascii-display-plugin.md")})
 * [TFT_eSPI driver with double buffering](${relRef("tft_espi-renderer-plugin.md")})
@@ -87,14 +88,6 @@ We can support other platforms such as ESP-IDF and STM32 using this approach com
 * [Resistive touch screen menu integration](${relRef("resistive-touch-screen-plugin.md")})
 * [XPT2046 and FT6206 touch screen menu integration](${relRef("ft6206-xt2046-touch-screen-plugin.md")})
 * [Capacitive Touch-pad sensor input](${relRef("touch-pad-sensor-plugin.md")})
-
-### Specific for Java on Raspberry PI or embedded Linux
-
-We have tested the designer application and embedCONTROL on a Raspberry PI, so not only can you make a Raspberry PI embedded application, you can even run designer and embedCONTROL on an RPI as well! The Java API and EmbedControl libraries are fully JavaDoc commented.
-
-* [Creating an embedded Java menu application for RaspberryPI](${relRef("menu-control-with-embedded-java.md")})
-* [Display menu on JavaFX/OpenJDK on Raspberry PI](${relRef("tcmenu-openjfx-raspberrypi-plugin.md")})
-* [Menu In Menu - Embed remote menus into a single app](${relRef("java-menu-in-menu.md")})
 
 ## Remotely controlling your menu / IoT
 
@@ -122,3 +115,8 @@ ${blockClear("left")}
 ## Creating / building / modifying plugins
 
 * [Creating plugins for use with TcMenu](https://github.com/TcMenu/tcMenu/tree/main/xmlPlugins)
+
+## Desktop version of the menu designer
+
+* [TcMenu - Getting started, including video & slides](${relRef("tcmenu-overview-quick-start.md")})
+* [Creating and generating menus using the CLI](${relRef("tcmenu-cli-workflow.md")})

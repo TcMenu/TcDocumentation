@@ -40,6 +40,14 @@ Each item has a type that defines what kind of data it can hold, for example an 
 
 This guide is designed to be read in conjunction with the [tcMenu reference documentation](${refdocs("/tcmenu/html/_menu_items_8h.html")}).
 
+## Using the fluent API, AKA menu builder
+
+You can decide between using static menu items and round tripping through designer, or using the fluent API. For more on this choice see the [web designer documentation](https://www.thecoderscorner.com/products/apps/tcmenu-designer/).
+
+If you choose initializer mode, you're then taking over the responsibility for creating the menu items. This is useful if you want to create your menu items programmatically.
+
+[Using fluent API TcMenuBuilder](${relRef("fluent-menu-builder-intro.md")}) explains how to work in this way. Many of the examples also now follow this approach.
+
 ## Properties shared by all MenuItems
 
 TcMenu can handle many menu item data types with each one extending MenuItem, so you can rely on some features always being available. Later on this page we'll provide links to each menu item type, but first let's look at properties common to all:

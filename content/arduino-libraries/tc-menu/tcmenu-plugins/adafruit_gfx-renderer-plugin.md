@@ -125,24 +125,5 @@ The library for this display is both memory buffered and monochrome. Again there
 
 Both ILI9341 and ST7735 are high resolution, color displays with built in memory. Therefore, these display libraries are unbuffered on the Arduino side. In order to improve performance where memory allows we support drawing menu items into a 2-bit (4 color) area first in RAM, then using a high performance blit function to transfer the data. Using this buffer the performance is excellent.
 
-There are some additional classes and functions available within our plugin that you can use yourself, these are how we improve drawing performance very significantly, they are available to you as well. But first we need to understand that all of the performance increase is down to RAM buffering (IE drawing into a canvas object first). We support two canvas types, the built in `GFXcanvas1` that is directly available in the library, or our extension `TcGFXcanvas2` that provides two bits per pixel (or 4 colors from 0..3).
-
-We have two drawing functions that can take the buffers that back the canvas and present it optimally, we've optimized them as much as we can, they both perform quite well, but working with `TcGFXcanvas2` being the most tested overall. These "CookieCut" functions allow you cut a range of bitmap data out of a larger bitmap area. Our canvas extension works just like the other canvas objects that are built in.
-
-Once you have drawn to a canvas, you now need to push to the display, for single bit (fgColor/bgColor) drawing, there is `drawCookieCutBitmap` where you provide the graphics, x, and y of the destination area, then the bitmap obtained from `getBuffer()` on the canvas followed by the width and height, then the total width of the bitmap, this is followed by the x and y starting location inside the bitmap and the foreground and background color.
-
-    void drawCookieCutBitmap(Adafruit_SPITFT* gfx, int16_t x, int16_t y, 
-                             const uint8_t *bitmap, int16_t w, int16_t h,
-                             int16_t totalWidth, int16_t xStart, int16_t yStart,
-                             uint16_t fgColor, uint16_t bgColor);
-    
-Next, for 2-bit per pixel drawing, there `drawCookieCutBitmap2bpp` that does exactly the same as above, but with a color palette, which you pass instead of the foreground and background.
-
-    void drawCookieCutBitmap2bpp(Adafruit_SPITFT* gfx, int16_t x, int16_t y, 
-                                 const uint8_t *bitmap, int16_t w, int16_t h,
-                                 int16_t totalWidth, int16_t xStart, int16_t yStart,
-                                 const uint16_t* palette);
-
-We have many examples that use Adafruit displays packaged in the examples folder within tcMenu. We test TFTs on a very wide range of boards.
 
 [Back to tcMenu main page](${relRef("tc-menu")}) 

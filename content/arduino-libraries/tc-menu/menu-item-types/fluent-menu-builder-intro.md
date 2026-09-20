@@ -64,7 +64,7 @@ To add a sub menu item we do this by creating a submenu, adding items to it, and
 
 There are two possibilities for menu flags, either `NoMenuFlags` or providing flags using `MenuFlags()` instead.
 
-For example to make an item readonly, you can provide `MenuFlags().readOnly()`.
+For example, to make an item readonly, you can provide `MenuFlags().readOnly()`.
 
 ## Complex item builders
 
@@ -73,4 +73,13 @@ There are two additional complexities when creating analog or scroll choice item
 ```
     builder.analogBuilder(MENU_TEMP_ID, "Temp", DONT_SAVE, MenuFlags().readOnly(), 0, nullptr)
         .offset(0).divisor(10).step(1).maxValue(2000).unit("C").endItem()
+```
+
+or scroll-choice, for example:
+
+```
+    builder.scrollChoiceBuilder(myId, "Choice Menu", myRomLocation, NoMenuFlags)
+               .fromRomChoices(romArrayLocation, numItems, fixedItemSize);
+               .cachingEepromValues()
+               .endItem();
 ```
