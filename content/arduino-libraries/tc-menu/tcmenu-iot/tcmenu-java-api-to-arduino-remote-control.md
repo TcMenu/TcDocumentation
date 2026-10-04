@@ -69,7 +69,7 @@ When you want to make a change to a remote value, you do not need to update the 
 
 There are two examples that you can look at to get started:
 
-* [Standalone RS232 Example](https://github.com/TcMenu/tcMenu/blob/main/tcMenuJavaApi/src/test/java/com/thecoderscorner/menu/examples/StandaloneRs232Test.java)
+* [Java API starters and examples](https://github.com/TcMenu/tcmenu-examples-starters)
 * Consult the Java docs that are shipped with the API.
 
 ## Connecting remotely
