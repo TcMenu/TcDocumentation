@@ -23,34 +23,43 @@ The above libraries support a wide range of hardware, including nearly every off
 
 ## What boards do our libraries support?
 
-| Processor   | Platform             | Libraries    | Locking  | DAC | Developer boards we test with   | 
-|-------------|----------------------|--------------|----------|-----|---------------------------------|
-| AVR         | Arduino              | Fully tested | Emulated | No  | MEGA 2560, WifiR2               |
-| SAMD        | Arduino              | Fully tested | Emulated | Yes | MKR1300                         |
-| R4 Uno/Nano | Arduino              | Fully tested | Atomic   | Yes | R4 Uno, R4 Nano                 |
-| SAMD        | Seeed Arduino        | Fully tested | Emulated | Yes | MG126 board                     |
-| nrf52840    | Arduino(mbed/Zephyr) | Fully tested | Atomic   | Yes | Nano 33 BLE devices             |
-| RPI Pico    | Arduino EarlePH      | Fully tested | Emulated | No  | Raspberry PI pico, TFT, encoder |
-| RP2040/Pico | Pico-SDK/CMake       | Fully tested | CAS      | No  | Tested fully within TcLibSDK    |
-| ESP8266     | Arduino              | Fully tested | Emulated | No  | Node MCU, Heltek Wifi 8         |
-| ESP32       | Arduino/ESP32-IDF    | Fully tested | Atomic   | Yes | Wifi32, AZ Dev Kit              |
-| ESP32S2     | Arduino/ESP32-IDF    | Fully tested | Atomic   | Yes | ESP32S2 Saloma                  |
-| ESP32S3     | Arduino/ESP32-IDF    | Fully tested | Atomic   | No  | ESP32S3 Tiny                    |
-| ESP32Cx     | Arduino/ESP32-IDF    | User tested  | Atomic   | Yes | ESP32S2 Saloma                  |
-| STM32F4     | Stm32Duino/StmCube   | Fully tested | Atomic   | Yes | Nucleo STM32F4x9ZI OLED, LTDC   |
-| Particle    | Photon               | User tested  | Emulated | No  | Unknown, user tested            |  
-| SAM         | Arduino              | Compilation  | Emulated | Yes | Arduino Due compile test only   |
+| Platform          | Processor     | Libraries    | Locking         | DAC | Developer boards we test with   | 
+|-------------------|---------------|--------------|-----------------|-----|---------------------------------|
+| Arduino           | AVR           | Fully tested | ATOMIC_BLOCK    | No  | MEGA 2560, WifiR2               |
+| Arduino           | SAMD          | Fully tested | ATOMIC_BLOCK    | Yes | MKR1300                         |
+| Arduino           | R4 Uno/Nano   | Fully tested | std::atomic     | Yes | R4 Uno, R4 Nano                 |
+| Seeed Arduino     | SAMD          | Fully tested | primask/barrier | Yes | MG126 board                     |
+| Arduino           | nrf52840      | Fully tested | std::atomic     | Yes | Nano 33 BLE devices             |
+| Teensy            | IMXRT1062DVL6 | Fully tested | std::atomic     | No  | Teensy 4.0, TFT, encoder        |
+| Arduino EarlePH   | RPI Pico      | Fully tested | CriticalSection | No  | Raspberry PI pico, TFT, encoder |
+| Pico-SDK/CMake    | RP2040/Pico   | Fully tested | CriticalSection | No  | Tested fully within TcLibSDK    |
+| Arduino           | ESP8266       | Fully tested | xt_rsil/barrier | No  | Node MCU, Heltek Wifi 8         |
+| Arduino/ESP32-IDF | ESP32         | Fully tested | std::atomic     | Yes | Wifi32, AZ Dev Kit              |
+| Arduino/ESP32-IDF | ESP32S2       | Fully tested | Atomic          | Yes | ESP32S2 Saloma                  |
+| Arduino/ESP32-IDF | ESP32S3       | Fully tested | std::atomic     | No  | ESP32S3 Tiny                    |
+| Arduino/ESP32-IDF | ESP32Cx       | User tested  | RISKV barrier   | Yes | ESP32C3 tiny                    |
+| Stm32Duino        | STM32F4       | Fully tested | std::atomic     | Yes | Nucleo STM32F4x9ZI OLED         |
+| STM32Cube         | STM32F4       | Fully tested | Atomic          | Yes | Nucleo STM32F4x9ZI OLED, LTDC   |
+| Photon            | Particle      | User tested  | primask/barrier | No  | Unknown, user tested            |  
+| Arduino           | SAM           | Compilation  | primask/barrier | Yes | Arduino Due compile test only   |
 
 ### CAS and thread safety notes: 
 
-* Atomic: We are using `std::atomic` in full lock free mode. 
-* Emulated: the hardware does not support CAS, we are emulating at least `compare_and_exchange_strong`.
+From 5.0, the default library behavior is to try and use `std::atomic` if it is available and always lock-free, we then try and use `compare_and_exchange_strong`, reverting back to ISR friendly memory barriers for the platform. For unknown boards that we don't explicitly test, you can open `TaskPlatformDeps.h` to take a look how it has been detected.
 
-The default library behavior is to try and use `std::atomic` if it is available, if it is available and lock-free, we then try and use `compare_and_exchange_strong`, reverting back to ISR friendly memory barriers for the platform. As long as you don't see a critical warning in compiler output, your board is fully supported.
+In summary, as long as you don't see a critical warning in compiler output, your board is most likely safe and fully supported.
 
-Summary: On Arduino, if hardware CAS is available, then we'll use it automatically. Other platforms we support are known quantities and are configured using appropriate safe constructs.
+Below we explain how the library detects the platform and what it does.
 
-On ESP boards we call yield more often within the run loop to prevent watchdog resets.
+1. Default case `std::atomic` if integer is always lock-free, we are using `std::atomic` `compare_and_exchange_strong`. This provides true CAS and highest performance.
+2. ARM `primask/barrier` fallback: if the hardware does not support true CAS (E.G. Cortex 0), we are emulating at least `compare_and_exchange_strong` with machine instructions to ensure atomicity.
+3. Pico `CriticalSection`: on PicoSDK/Arduino Pico EarlePH core we are emulating `compare_and_exchange_strong` locking using a CriticalSection (provided in hardware).
+4. ESP8266 `xt_rsil` fallback: on ESP8266 we are emulating `compare_and_exchange_strong` locking using xt_rsil machine instruction.
+5. AVR `ATOMIC_BLOCK` on AVR we use the ATOMIC_BLOCK macro to ensure atomicity.
+6. `RISKV barrier`: on RISCV we use the RISCV interrupt register and barrier machine instruction to ensure atomicity.
+7. The last resort is to fallback to interrupts/nointerrupts. This is not safe and will emit a critical warning.
+
+Additionally, note that on ESP boards we call yield more often within the run loop to prevent watchdog resets.
 
 ## Defining Build Flags and Platform settings
 
