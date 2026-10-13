@@ -8,7 +8,7 @@ type: "menu_list"
 githublink: "https://github.com/TcMenu/tcMenu"
 referenceDocs: "/tcmenu/html/index.html"
 banner: "/products/arduino-libraries/images/front/tcMenu-banner.png"
-titleimg: "/products/arduino-libraries/images/electronics/arduino/themes/color-blue-example.jpg"
+titleimg: "/products/arduino-libraries/images/electronics/arduino/themes/ice-white-ltdc.jpg"
 ---
 
 TcMenu is a modular, IoT ready multi level menu library for Arduino, ESP32-IDF, Pico-SDK, STM32Cube and mbed platforms supporting many input, display and IoT / remote interfaces. It makes presenting configuration, status and operational information much easier. Apache licensed and therefore safe for commercial use.
