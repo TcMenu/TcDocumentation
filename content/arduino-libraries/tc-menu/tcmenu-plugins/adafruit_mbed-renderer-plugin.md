@@ -19,11 +19,11 @@ In this guide we show how to use our [Adafruit_GFX port for STM32Cube/PicoSDK/mb
 
 This fork of Adafruit_GFX library supports the following displays.
 
-* OLED: SSD1306/SH1106 monochrome displays with a memory buffer. Both SPI and I2C are supported.
+* OLED: SSD1306/SH1106/SH1107 monochrome displays with a memory buffer. Both SPI and I2C are supported.
 * LTDC: STM32Cube LTDC displays with a memory mapped frame buffer.
 * Framebuffer: A general purpose framebuffer that can be specialized to other cases.
 
-If you follow the instructions in either the [PicoSDK examples](https://github.com/TcMenu/tcLibraryDev/tree/main/cmakeProject), or the [STM32Cube examples](https://github.com/TcMenu/stm32-examples) they include setting up this library. Given that this library is a fork of Adafruit_GFX, it is therefore nearly 100% compatible with it. As such you can consult the [Adafruit_GFX library documentation](https://learn.adafruit.com/adafruit-gfx-graphics-library/overview) if you're not familiar with the library already.
+If you follow the instructions in either the [PicoSDK examples](https://github.com/TcMenu/tcLibraryDev/tree/main/cmakeProject), [ESP32-IDF examples](https://github.com/TcMenu/tcLibraryDev/tree/main/cmakeEsp32), or the [STM32Cube examples](https://github.com/TcMenu/stm32-examples) they include setting up this library. Given that this library is a fork of Adafruit_GFX, it is therefore nearly 100% compatible with it. As such you can consult the [Adafruit_GFX library documentation](https://learn.adafruit.com/adafruit-gfx-graphics-library/overview) if you're not familiar with the library already. If you're using with mbed, a couple of starter examples are in the library examples folder.
 
 Related documentation:
  
@@ -34,7 +34,7 @@ Related documentation:
 ## Plugin and Library details
 
 * Library required: https://github.com/TcMenu/Adafruit-GFX-mbed-fork
-* What we've tested: STM32Cube, PicoSDK, mbed 6
+* What we've tested: ESP32-IDF, STM32Cube, PicoSDK, mbed 6
 
 ## Options for framebuffers such as LTDC
 
