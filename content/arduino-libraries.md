@@ -10,7 +10,7 @@ toc_needed: true
 
 ## Libraries Maintained actively by us
 
-Arduino and PicoSDK libraries that we have written and actively maintain. You can use these safely in the knowledge that there is both [community](${relRef("community-help.md")}) and [commercial support](${relRef("training-support")}) available.
+Arduino and PicoSDK libraries that we have written and actively maintain. You can use these safely in the knowledge that there is both [community](${relRef("community-help.md")}) and [commercial support](${relRef("training-support.md")}) available.
 
 * [TaskManagerIO](${relRef("taskmanager-io.md")}) provides core event and task scheduling services to Arduino sketches.
 * [IoAbstraction](${relRef("io-abstraction.md")}) provides user input, EEPROM and IO helper classes.
@@ -19,44 +19,44 @@ Arduino and PicoSDK libraries that we have written and actively maintain. You ca
 * [SimpleCollections](${relRef("simple-collections.md")}) a simple binary searchable list and a thread/interrupt safe circular buffer that work on a very wide range of boards.
 * [LiquidCrystalIO](${relRef("liquidcrystal-io.md")}) a task manager friendly fork of the Arduino LCD library that works over many IO devices.
 
-The above libraries support a wide range of hardware, including nearly every official Arduino board, most ESP boards, along with PicoSDK, StmCube, ESP-IDF and mbed boards with or without an RTOS. We test our releases on the boards below. 
+The above libraries support a wide range of hardware, including nearly every official Arduino board, most ESP boards, along with PicoSDK, StmCube, ESP-IDF, and mbed boards with or without an RTOS. We test our releases on the boards below. 
 
 ## What boards do our libraries support?
 
-| Platform          | Processor     | Libraries    | Locking         | DAC | Developer boards we test with   | 
-|-------------------|---------------|--------------|-----------------|-----|---------------------------------|
-| Arduino           | AVR           | Fully tested | ATOMIC_BLOCK    | No  | MEGA 2560, WifiR2               |
-| Arduino           | SAMD          | Fully tested | ATOMIC_BLOCK    | Yes | MKR1300                         |
-| Arduino           | R4 Uno/Nano   | Fully tested | std::atomic     | Yes | R4 Uno, R4 Nano                 |
-| Seeed Arduino     | SAMD          | Fully tested | primask/barrier | Yes | MG126 board                     |
-| Arduino           | nrf52840      | Fully tested | std::atomic     | Yes | Nano 33 BLE devices             |
-| Teensy            | IMXRT1062DVL6 | Fully tested | std::atomic     | No  | Teensy 4.0, TFT, encoder        |
-| Arduino EarlePH   | RPI Pico      | Fully tested | CriticalSection | No  | Raspberry PI pico, TFT, encoder |
-| Pico-SDK/CMake    | RP2040/Pico   | Fully tested | CriticalSection | No  | Tested fully within TcLibSDK    |
-| Arduino           | ESP8266       | Fully tested | xt_rsil/barrier | No  | Node MCU, Heltek Wifi 8         |
-| Arduino/ESP32-IDF | ESP32         | Fully tested | std::atomic     | Yes | Wifi32, AZ Dev Kit              |
-| Arduino/ESP32-IDF | ESP32S2       | Fully tested | Atomic          | Yes | ESP32S2 Saloma                  |
-| Arduino/ESP32-IDF | ESP32S3       | Fully tested | std::atomic     | No  | ESP32S3 Tiny                    |
-| Arduino/ESP32-IDF | ESP32Cx       | User tested  | RISKV barrier   | Yes | ESP32C3 tiny                    |
-| Stm32Duino        | STM32F4       | Fully tested | std::atomic     | Yes | Nucleo STM32F4x9ZI OLED         |
-| STM32Cube         | STM32F4       | Fully tested | Atomic          | Yes | Nucleo STM32F4x9ZI OLED, LTDC   |
-| Photon            | Particle      | User tested  | primask/barrier | No  | Unknown, user tested            |  
-| Arduino           | SAM           | Compilation  | primask/barrier | Yes | Arduino Due compile test only   |
+| Platform             | Processor     | Libraries    | Locking           | DAC | Developer boards we test with   | 
+|----------------------|---------------|--------------|-------------------|-----|---------------------------------|
+| Arduino              | AVR           | Fully tested | `ATOMIC_BLOCK`    | No  | MEGA 2560, WifiR2               |
+| Arduino              | SAMD          | Fully tested | `primask/barrier` | Yes | MKR1300                         |
+| Arduino              | R4 Uno/Nano   | Fully tested | `std::atomic`     | Yes | R4 Uno, R4 Nano                 |
+| Seeed Arduino        | SAMD          | Fully tested | `primask/barrier` | Yes | MG126 board                     |
+| Arduino              | nrf52840      | Fully tested | `std::atomic`     | Yes | Nano 33 BLE devices             |
+| Teensy               | IMXRT1062DVL6 | Fully tested | `std::atomic`     | No  | Teensy 4.0, TFT, encoder        |
+| Arduino EarlePH      | RPI Pico      | Fully tested | `CriticalSection` | No  | Raspberry PI pico, TFT, encoder |
+| Pico-SDK/CMake       | RP2040/Pico   | Fully tested | `CriticalSection` | No  | Tested fully within TcLibSDK    |
+| Arduino              | ESP8266       | Fully tested | `xt_rsil/barrier` | No  | Node MCU, Heltek Wifi 8         |
+| Arduino or ESP32-IDF | ESP32         | Fully tested | `std::atomic`     | Yes | Wifi32, AZ Dev Kit              |
+| Arduino or ESP32-IDF | ESP32S2       | Fully tested | `Atomic`          | Yes | ESP32S2 Saloma                  |
+| Arduino or ESP32-IDF | ESP32S3       | Fully tested | `std::atomic`     | No  | ESP32S3 Tiny                    |
+| Arduino or ESP32-IDF | ESP32Cx       | User tested  | `RISCV barrier`   | Yes | ESP32C3 tiny                    |
+| Stm32Duino           | STM32F4       | Fully tested | `std::atomic`     | Yes | Nucleo STM32F4x9ZI OLED         |
+| STM32Cube            | STM32F4       | Fully tested | `Atomic`          | Yes | Nucleo STM32F4x9ZI OLED, LTDC   |
+| Photon               | Particle      | User tested  | `primask/barrier` | No  | Unknown, user tested            |  
+| Arduino              | SAM           | Compilation  | `primask/barrier` | Yes | Arduino Due compile test only   |
 
 ### CAS and thread safety notes: 
 
-From 5.0, the default library behavior is to try and use `std::atomic` if it is available and always lock-free, we then try and use `compare_and_exchange_strong`, reverting back to ISR friendly memory barriers for the platform. For unknown boards that we don't explicitly test, you can open `TaskPlatformDeps.h` to take a look how it has been detected.
+From 5.0, the default library behavior is to try and use `std::atomic`. If it is available and always lock-free, we then try and use `compare_and_exchange_strong`, reverting to ISR friendly memory barriers for the platform. For unknown boards that we don't explicitly test, there is a preprocessor warning if the board cannot be properly configured.
 
 In summary, as long as you don't see a critical warning in compiler output, your board is most likely safe and fully supported.
 
 Below we explain how the library detects the platform and what it does.
 
 1. Default case `std::atomic` if integer is always lock-free, we are using `std::atomic` `compare_and_exchange_strong`. This provides true CAS and highest performance.
-2. ARM `primask/barrier` fallback: if the hardware does not support true CAS (E.G. Cortex 0), we are emulating at least `compare_and_exchange_strong` with machine instructions to ensure atomicity.
+2. ARM `primask/barrier` fallback: if the hardware does not support true CAS (E.G. Cortex-M0), we are emulating at least `compare_and_exchange_strong` with machine instructions to ensure atomicity.
 3. Pico `CriticalSection`: on PicoSDK/Arduino Pico EarlePH core we are emulating `compare_and_exchange_strong` locking using a CriticalSection (provided in hardware).
 4. ESP8266 `xt_rsil` fallback: on ESP8266 we are emulating `compare_and_exchange_strong` locking using xt_rsil machine instruction.
 5. AVR `ATOMIC_BLOCK` on AVR we use the ATOMIC_BLOCK macro to ensure atomicity.
-6. `RISKV barrier`: on RISCV we use the RISCV interrupt register and barrier machine instruction to ensure atomicity.
+6. `RISCV barrier`: on RISCV we use the RISCV interrupt register and barrier machine instruction to ensure atomicity.
 7. The last resort is to fallback to interrupts/nointerrupts. This is not safe and will emit a critical warning.
 
 Additionally, note that on ESP boards we call yield more often within the run loop to prevent watchdog resets.
@@ -78,7 +78,7 @@ These settings control how logging works, what level of logging is in use, and e
 
 Whenever you include `TaskManagerIO.h` this pulls in `TaskPlatformDeps.h` to work out what platform you're building for, and to create suitable thread safety and CAS or Atomic based locking constructs for that platform. Again the thread safety is so that you can put events into task manager from any thread, or trigger events from interrupts. You should only ever call runLoop from a single thread, usually for the default `taskManager` instance that would be the `loop()` method on Arduino, or `main()` on mbed.
 
-The follow build flags can be set either in your build tool or in `zio_local_definitions.h`:
+The following build flags can be set either in your build tool or in `zio_local_definitions.h`:
 
 * `DEFAULT_TASK_SIZE` - sets the number of tasks in each block, if you define this flag then you MUST define `DEFAULT_TASK_BLOCKS` too
 * `DEFAULT_TASK_BLOCKS` - sets the number of times task manager can allocate a block of size `DEFAULT_TASK_SIZE`
@@ -86,13 +86,13 @@ The follow build flags can be set either in your build tool or in `zio_local_def
 
 ### In IoAbstraction
 
-Whenever you include `IoAbstraction.h` or include `PlatformDetermination.h` directly, then IoAbstraction need to work out how to provide all input output features that it supports. This allows the rest of IoAbstraction not to concern itself with platform differences. This goes right down to GPIO, the way I2C works, and even analog IO support. For ESP32 we provide analog input and output using IDF functions, allowing the analog support on ESP32 to support the inbuilt DAC, ADC and PWM (using LEDC).
+Whenever you include `IoAbstraction.h` or include `PlatformDetermination.h` directly, then IoAbstraction needs to work out how to provide all input output features that it supports. This allows the rest of IoAbstraction not to concern itself with platform differences. This goes right down to GPIO, the way I2C works, and even analog IO support. For ESP32 we provide analog input and output using IDF functions, allowing the analog support on ESP32 to support the inbuilt DAC, ADC, and PWM (using LEDC).
 
 Platform related settings:
 
 * `TMIOA_FORCE_ARDUINO_MBED` force Arduino mbed for an undetected mbed board.
 * `IOA_DEVELOPMENT_EXPERIMENTAL` only to enable untested features in development.
-* `IOA_USE_ESP32_EXTRAS` use ESP32 specifc calls instead of the Arduino ones. Can easily be turned on/off, whatever works for your case.
+* `IOA_USE_ESP32_EXTRAS` use ESP32 specific calls instead of the Arduino ones. Can easily be turned on/off, whatever works for your case.
 * `IOA_ENABLE_STM32_HAL_EXTRAS` enable STM32 specific HAL features, such as battery backed ROM support.
 * `IO_MKR_FORCE_LOWRES_ANALOG` force MKR to use lower 8-bit resolution analog output.
 * `STM32_IOA_GPIO_ARR_SIZE` the number of the GPIO that IoAbstraction can map as internal pins, defaults to 16
@@ -107,7 +107,7 @@ Switches and encoder settings:
 * `MAX_ROTARY_ENCODERS` the maximum number of rotary encoders that can be used, will not reallocate.
 * `MAX_JOYSTICK_ACCEL` the maximum acceleration for analog joystick encoder emulation
 * `ALLOWABLE_RANGE` the floating point amount that is used to determine if an analog button press is in range +/-, default is 0.01F
-* `TC_LEGACY_ENCODER` if defined the legacy `HardwareRotaryEncoder` class will be used instead of the newer state based class. 
+* `TC_LEGACY_ENCODER` if defined the legacy `HardwareRotaryEncoder` class will be used instead of the newer state-based class. 
 
 Touch specific settings:
 
