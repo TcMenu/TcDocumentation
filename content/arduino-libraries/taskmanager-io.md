@@ -14,7 +14,7 @@ banner: "/products/arduino-libraries/images/electronics/arduino/taskmgr/taskmana
 
 TaskManagerIO provides scheduling, events and interrupt marshalling, all while remaining thread safe across a wide range of boards. By thread safe we mean that you can add tasks to task manager from another thread while it's still running. However, the task manager itself will always run on one thread, making it easy for you to write code.
 
-This library contains the original scheduling support class TaskManager that was previously built into IoAbstraction.
+You can use TaskManagerIO on Arduino, PicoSDK, STM32Cube, ESP32-IDF, and mbed6 platforms.
 
 ## Getting started and scheduling things to be done
 

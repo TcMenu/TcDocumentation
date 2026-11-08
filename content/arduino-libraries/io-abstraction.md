@@ -12,7 +12,7 @@ banner: "/products/arduino-libraries/images/electronics/arduino/power/input-libr
 
 This library provides abstractions that help you write event-driven Arduino and mbed applications. It has device abstractions that allow you to treat device pins, PCF8574, MCP23017, MPR121 and AW9523 almost the same in code. This includes higher level interrupt management, buttons with de-bouncing, matrix keyboards, rotary encoders and even [LiquidCrystalIO](${relRef("liquidcrystal-io.md")} ). There are many examples packaged with the library that cover most use cases.
 
-For development, you can use any Arduino or mbed IDE. However, our recommendation is [platformIO](https://platformio.org/) with Clion or VS Code. We test the library with Arduino and PlatformIO.
+For development, you can use a wide range of IDEs, the library is compatible with Arduino, PicoSDK, STM32Cube, ESP32-IDF, and mbed6. Consult the [tcLibraryDev project](https://github.com/TcMenu/tcLibraryDev) for examples of non-Arduino usage.
 
 Need help with a commercial design, or want a customised version for your hardware, see the consultancy link at the top of the page?
 
