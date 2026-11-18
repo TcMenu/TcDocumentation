@@ -56,6 +56,6 @@ Remember that one of TaskManagerIO's main advantages is that your embedded apps 
 
 ## Collection support 
 
-* [List with binary search capability](${relref("simple-collection-btree.md")})
-* [Thread/interrupt safe lock free circular buffer](${relref("thread-safe-circular-buffer-collection.md")})
+* [List with binary search capability](${relRef("simple-collection-btree.md")})
+* [Thread/interrupt safe lock free circular buffer](${relRef("thread-safe-circular-buffer-collection.md")})
 

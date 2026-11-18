@@ -12,4 +12,4 @@ banner: "/products/arduino-libraries/images/electronics/arduino/taskmgr/taskmana
 
 # SimpleCollections - see TaskManagerIO documentation
 
-Moved to [TaskManagerIO](${relref("taskmanager-io.md")})
+Moved to [TaskManagerIO](${relRef("taskmanager-io.md")})
