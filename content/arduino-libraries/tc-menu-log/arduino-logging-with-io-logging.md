@@ -119,6 +119,8 @@ You should always start the serial port. For example on Arduino you may need to 
 
     IOLOG_START_SERIAL
 
+On PicoSDK (stdio option enabled), ESP32-IDF and STM32Cube you do not need to initialize the logging, as it is using an already initialized channel,
+
 In summary, the logging framework is a compromise between functionality and size, biased slightly toward size.
 
 ## Example of the logging format on device
