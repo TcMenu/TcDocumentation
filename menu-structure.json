@@ -58,9 +58,9 @@
       "relativePath": "/products/arduino-libraries/taskmanager-io/"
     },
     {
-      "name": "Simple Collections",
-      "id": "simple-collections",
-      "relativePath": "/products/arduino-libraries/simple-collections/"
+      "name": "TcMenu Log",
+      "id": "tc-menu-log",
+      "relativePath": "/products/arduino-libraries/tc-menu-log/"
     },
     {
       "name": "LiquidCrystalIO",
