@@ -54,3 +54,8 @@ If you are using an RTOS such as FreeRTOS on ESP32 or mbed RTOS 6 you can safely
 
 Remember that one of TaskManagerIO's main advantages is that your embedded apps don't need to be concerned with the possibility of access across more than one thread, or working out how to handle raw interrupt handlers. Removing these from the mix allows code to be cleaner.  
 
+## Collection support 
+
+* [List with binary search capability](${relref("simple-collection-btree")})
+* [Thread/interrupt safe lock free circular buffer](${relref("thread-safe-circular-buffer-collection")})
+

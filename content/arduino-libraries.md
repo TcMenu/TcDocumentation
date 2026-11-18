@@ -12,11 +12,11 @@ toc_needed: true
 
 Arduino and PicoSDK libraries that we have written and actively maintain. You can use these safely in the knowledge that there is both [community](${relRef("community-help.md")}) and [commercial support](${relRef("training-support.md")}) available.
 
-* [TaskManagerIO](${relRef("taskmanager-io.md")}) provides core event and task scheduling services to Arduino sketches.
-* [IoAbstraction](${relRef("io-abstraction.md")}) provides user input, EEPROM and IO helper classes.
+* [TcMenuLog](${relRef("tc-menu-log.md")}) a simple logging library that all other libraries use.
+* [TaskManagerIO](${relRef("taskmanager-io.md")}) provides per-platform atomics, coroutine style event and task scheduling services.
+* [IoAbstraction](${relRef("io-abstraction.md")}) provides platform abstractions, user input, EEPROM and IO helper classes.
 * [tcMenu](${relRef("tc-menu.md")}) a fully fledged embedded menu framework with a designer UI and IoT capabilities
 * [tcUnicodeHelper](${relRef("tc-unicode-helper.md")}) UTF-8 unicode support for Adafruit_GFX, tcMenu, U8G2, LTDC, and TFT_eSPI.
-* [SimpleCollections](${relRef("simple-collections.md")}) a simple binary searchable list and a thread/interrupt safe circular buffer that work on a very wide range of boards.
 * [LiquidCrystalIO](${relRef("liquidcrystal-io.md")}) a task manager friendly fork of the Arduino LCD library that works over many IO devices.
 
 The above libraries support a wide range of hardware, including nearly every official Arduino board, most ESP boards, along with PicoSDK, StmCube, ESP-IDF, and mbed boards with or without an RTOS. We test our releases on the boards below. 

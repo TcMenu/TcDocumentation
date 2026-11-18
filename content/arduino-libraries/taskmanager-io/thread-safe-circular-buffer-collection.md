@@ -12,9 +12,9 @@ banner = "/images/electronics/arduino/power/io-abstraction-encoder-pcf8574-thumb
 weight = 2
 +++
 
-Circular buffer provides an easy way to interact with events that take place on another thread or in an interrupt, it is not very efficient when used on a single thread because it uses atomic operations to ensure consistency of the buffer. It is an advanced collection for use by users that understand threading and writing interrupt safe code.
+Circular buffer provides an easy way to interact with events that take place on another thread or in an interrupt. It is potentially less efficient when used on a single thread due to atomic operations to ensure consistency of the buffer. It is an advanced collection for use by users that understand threading and writing interrupt safe code.
 
-There are two implementations, an optmized version for storing bytes, and a generic version that can be used to store any type, the generic version can also be created as a memory pool, where it works slightly differently.
+There are two implementations, an optimized version for storing bytes, and a generic version that can be used to store any type, the generic version can also be created as a memory pool, where it works slightly differently.
 
 ## How circular buffer works
 
@@ -26,7 +26,7 @@ There are two implementations, an optmized version for storing bytes, and a gene
         4
         5
 
-A circular buffer has one pointer for read and one for write, each are controlled independently and wrap when they reach the end of the buffer. So in the case below, once we increment past 5 we go back to 0. In this sense, they will overwrite data and they will never block. This makes them safer for use in critical code areas such as interrupts.
+A circular buffer has one pointer for read and one for write, each are controlled independently and wrap when they reach the end of the buffer. So in the case below, once we increment past 5 we go back to 0. In this sense, they will overwrite data, and they will never block. This makes them safer for use in critical code areas such as interrupts.
 
 When we want to check if something is available, we call the `available` method, when we want to get the next item and bump the count, we call `get`. To put something into the buffer we call `put`. That's it, the only restriction is that get must never be called when available returns false, and only one thread / interrupt should use the `available` and `get` methods. Any number of threads can put.
 
