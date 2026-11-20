@@ -42,7 +42,7 @@ TaskManagerIO has a complete eventing framework built into it, on top of this ma
 
 * [Using polled events with TaskManager](${relRef("using-polled-events-taskmanager.md")})
 * [Using interrupt event with TaskManager](${relRef("using-interrupt-threaded-events-taskmanager.md")})
-* [Using spin-lock with TaskManager](${relRef("task-manager-spin-lock-guide.md")})
+* [Using atomics and spin-locks provided by TaskManager](${relRef("task-manager-spin-lock-guide.md")})
 
 ## Power management
  
